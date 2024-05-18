@@ -1,13 +1,15 @@
 {
-    "name": "stock-scraper",
-    "version": "1.0.0",
-    "main": "scrape_stocks.js",
-    "scripts": {
-      "start": "node scrape_stocks.js"
-    },
-    "dependencies": {
-      "axios": "^0.21.1",
-      "cheerio": "^1.0.0-rc.10",
-      "@supabase/supabase-js": "^1.28.0"
-    }
+  "name": "stock-scraper",
+  "version": "1.0.0",
+  "main": "scrape_stocks.js",
+  "scripts": {
+    "start": "node scrape_stocks.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^1.28.0",
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.10",
+    "puppeteer": "^22.9.0",
+    "yahoo-finance2": "2.11.2"
   }
+}
