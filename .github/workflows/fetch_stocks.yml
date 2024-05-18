@@ -1,0 +1,29 @@
+name: Fetch Global Stocks
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  fetch-stocks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install axios dotenv @supabase/supabase-js
+
+      - name: Fetch Global Stocks
+        run: node fetchStocks.js
+        env:
+          FINANCIAL_MODELING_PREP_API_KEY: ${{ secrets.FINANCIAL_MODELING_PREP_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
