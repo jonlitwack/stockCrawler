@@ -9,10 +9,10 @@ const SUPABASE_KEY = process.env.SUPABASE_KEY;
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const endpoints = [
-    `https://financialmodelingprep.com/api/v3/quotes/tsx?apikey=${API_KEY}`,
-    `https://financialmodelingprep.com/api/v3/quotes/tmx?apikey=${API_KEY}`,
-    `https://financialmodelingprep.com/api/v3/quotes/neo?apikey=${API_KEY}`,
-    `https://financialmodelingprep.com/api/v3/quotes/tsxv?apikey=${API_KEY}`,
+    `https://financialmodelingprep.com/api/v3/symbol/tsx?apikey=${API_KEY}`,
+    `https://financialmodelingprep.com/api/v3/symbol/tmx?apikey=${API_KEY}`,
+    `https://financialmodelingprep.com/api/v3/symbol/neo?apikey=${API_KEY}`,
+    `https://financialmodelingprep.com/api/v3/symbol/tsxv?apikey=${API_KEY}`,
 ];
 
 async function fetchStocksFromEndpoint(url) {
@@ -45,6 +45,7 @@ async function upsertStocks(stocks) {
                { 
                  id: stock.symbol,
                  symbol: stock.symbol,
+                 name: stock.name,
                  price: stock.price,
                  changes_percentage: stock.changesPercentage,
                  change: stock.change,
@@ -55,10 +56,15 @@ async function upsertStocks(stocks) {
                  market_cap: stock.marketCap,
                  price_avg_50: stock.priceAvg50,
                  price_avg_200: stock.priceAvg200,
+                 exchange: stock.exchange,
                  volume: stock.volume,
                  avg_volume: stock.avgVolume,
-                 exchange: stock.exchange
-               },
+                 open: stock.open,
+                 previous_close: stock.previousClose,
+                 eps: stock.eps,
+                 pe: stock.pe,
+                 earnings_announcement: stock.earningsAnnouncement,
+                 shares_outstanding: stock.sharesOutstanding,               },
                { onConflict: 'id' }
             );
 
